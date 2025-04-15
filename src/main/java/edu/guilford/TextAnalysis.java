@@ -52,6 +52,8 @@ public class TextAnalysis {
             System.err.flush();
             System.exit(1);
         }
+
+        PriorityQueue<WordFrequency> frequencyPQCopy = new PriorityQueue<>(frequencyPQ);
         
         // write the word frequencies in a new file
         try {
@@ -68,6 +70,20 @@ public class TextAnalysis {
             System.exit(1);
         }
 
+        frequencyPQ = frequencyPQCopy;
+
+        // ask the user for a word and print its frequency
+        Scanner userInput = new Scanner(System.in);
+        System.out.print("Enter a word to find its frequency: ");
+        String word = userInput.nextLine().toLowerCase();
+        try {
+            int frequency = getWordFrequency(word, frequencyPQ);
+            System.out.println(frequency);
+        } catch (InvalidWordException e) {
+            System.err.println(e.getMessage());
+            System.exit(1);
+        }
+        userInput.close();
 
     }
 
@@ -90,5 +106,14 @@ public class TextAnalysis {
         for (Map.Entry<String, Integer> entry : wordFrequencyMap.entrySet()) {
             frequencyPQ.add(new WordFrequency(entry.getKey(), entry.getValue()));
         }
+    }
+
+    public static int getWordFrequency(String word, PriorityQueue<WordFrequency> frequencyPQ) throws InvalidWordException {
+        for (WordFrequency wf : frequencyPQ) {
+            if (wf.getWord().equals(word)) {
+                return wf.getFrequency();
+            }
+        }
+        throw new InvalidWordException("Word not found in the text.");
     }
 }
