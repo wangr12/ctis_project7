@@ -40,7 +40,7 @@ public class TextAnalysis {
 
         // write the words in a new file
         try {
-            FileWriter fileLocation = new FileWriter("alphabetical.txt");
+            FileWriter fileLocation = new FileWriter("src/main/resources/alphabetical.txt");
             BufferedWriter writer = new BufferedWriter(fileLocation);
             while (!alphabeticalPQ.isEmpty()) {
                 writer.write(alphabeticalPQ.poll());
@@ -57,7 +57,7 @@ public class TextAnalysis {
         
         // write the word frequencies in a new file
         try {
-            FileWriter fileLocation = new FileWriter("wordFrequencies.txt");
+            FileWriter fileLocation = new FileWriter("src/main/resources/wordFrequencies.txt");
             BufferedWriter writer = new BufferedWriter(fileLocation);
             while (!frequencyPQ.isEmpty()) {
                 writer.write(frequencyPQ.poll().toString());
