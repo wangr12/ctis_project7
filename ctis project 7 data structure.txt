@@ -1,0 +1,4 @@
+﻿To store all the words in an alphabetical sequence, I chose to use a PriorityQueue. I found this to be the simplest method as PriorityQueue automatically orders String objects in alphabetical order. The process of adding or removing all the words is O(n*log(n)), which I found to be the most efficient complexity.
+
+
+To store all the words by frequency, I used a combination of PriorityQueue and HashMap. Although I made a separate class that stored the frequency for the words, I ran into a problem. Without the HashMap, I would have to iterate through the entire PriorityQueue for each word to check for any repeats. HashMap, however, could locate the duplicate much quicker, and so instead of having a complexity of O(n^2), I had a complexity of O(n). Then, I added all the elements to the PriorityQueue, which automatically sorted all the WordFrequency objects with a complexity of O(n*log(n)).
